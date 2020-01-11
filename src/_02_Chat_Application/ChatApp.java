@@ -12,14 +12,17 @@ public class ChatApp {
 		c.start();
 	}
 	
-	//this is not actually great look on ButtonClicker --------------------------------------------
-	
 	public void start() {
-		int r = JOptionPane.showConfirmDialog(null, "Would you like to host a connection?");
+		int r = JOptionPane.showConfirmDialog(null, "Would you like to host a connection?", "ChatApp", JOptionPane.YES_NO_OPTION);
 		if (r == JOptionPane.YES_OPTION) {
 			Server s = new Server(8080);
+			s.run();
 		} else {
-			System.out.println("nee");
+			String iP = JOptionPane.showInputDialog("Enter IP address:");
+			String prt = JOptionPane.showInputDialog("Enter port number: ");
+			int port = Integer.parseInt(prt);
+			Client c = new Client(iP, port);
+			c.run();
 		}
 	}
 }
